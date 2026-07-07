@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/.venv/
+
+# Data: local DB + stored cover/page images
+backend/data/
+
+# Node / Vite
+node_modules/
+frontend/dist/
+frontend/node_modules/
+
+# Misc
+.DS_Store
+*.log
