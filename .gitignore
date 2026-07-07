@@ -13,6 +13,8 @@ manga_data_backup_*.tar.gz
 node_modules/
 frontend/dist/
 frontend/node_modules/
+web/dist/
+web/node_modules/
 
 # Misc
 .DS_Store

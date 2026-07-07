@@ -99,6 +99,24 @@ machines, move `backend/data/` by hand with the helper script:
 
 The archive is your private data — keep it off public storage and out of git.
 
+## Read-only web reader (no server) — `web/`
+
+`web/` is a **static** version of the reader that runs with no backend and can be
+hosted on GitHub Pages. It reads your library **locally in the browser**: sql.js
+(SQLite compiled to WebAssembly) opens your `manga.db`, and page images load from
+the same folder — all client-side. **No manga content is ever uploaded**; only the
+app code is published. It's read-only (browse the library and read chapters with
+panel-focus zoom); adding/translating still uses the local app + `cli.py`.
+
+- **Browser:** needs the File System Access API — use **Chrome or Edge** (desktop).
+  It remembers your data folder between visits.
+- **Use it:** open the Pages URL → "Choose data folder" → pick your `backend/data`
+  folder (the one with `manga.db` and `images/`). Then read, fully offline.
+- **Deploy:** pushing changes under `web/` runs `.github/workflows/pages.yml`, which
+  builds and publishes to Pages. In the repo's **Settings → Pages**, set the source
+  to **GitHub Actions** once. Served at `https://<user>.github.io/manga_learning/`.
+- **Local dev:** `cd web && npm install && npm run dev`.
+
 ## The translation CLI (`backend/cli.py`)
 
 Run from `backend/` with `uv run cli.py <command>`:
