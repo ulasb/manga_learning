@@ -76,6 +76,29 @@ export GOOGLE_BOOKS_API_KEY=your_key   # before starting the backend
 
 AniList and MangaDex need no key and cover most titles, including Japanese ones.
 
+## Cloning on a new machine & moving your library
+
+The code is in git; your **library data is not**. `backend/data/` — the SQLite
+database, cover/page images, and the PDF drop folder — is gitignored, because it
+holds personal scans of manga you own and shouldn't be uploaded anywhere.
+
+So a fresh clone starts with an **empty library**: the database is recreated
+automatically on first run, and you re-import your own content on that machine.
+
+To carry your library (translations, glossary, page images) between your own
+machines, move `backend/data/` by hand with the helper script:
+
+```bash
+# on the source machine
+./scripts/data.sh backup                      # -> manga_data_backup_<timestamp>.tar.gz
+
+# copy that archive to the other machine yourself (USB, encrypted drive, private cloud),
+# then, in the repo there:
+./scripts/data.sh restore manga_data_backup_<timestamp>.tar.gz
+```
+
+The archive is your private data — keep it off public storage and out of git.
+
 ## The translation CLI (`backend/cli.py`)
 
 Run from `backend/` with `uv run cli.py <command>`:
@@ -87,6 +110,8 @@ Run from `backend/` with `uv run cli.py <command>`:
 | `image <id>` | Print just the absolute image path for a page. |
 | `import-page <id> <file.json>` | Replace a page's panels from JSON (the fast path). Re-import to revise. |
 | `set-panel <page> <idx> [opts]` | Upsert a single panel (one-off fixes). |
+| `set-bboxes <id> <file.json>` | Set per-panel zoom regions (for panel-focus zoom in the reader). |
+| `import-pdf <path> [opts]` | Import a PDF you own as a book (renders each page to an image). |
 | `set-status <id> <status>` | Set page status. |
 | `glossary <series_id>` | List a series' glossary. |
 | `add-term <series_id> [opts]` | Add a glossary term. |

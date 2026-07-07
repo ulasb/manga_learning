@@ -4,8 +4,10 @@ __pycache__/
 .venv/
 backend/.venv/
 
-# Data: local DB + stored cover/page images
+# Data: local DB + stored cover/page images (personal scans — never commit)
 backend/data/
+# Library backups produced by scripts/data.sh
+manga_data_backup_*.tar.gz
 
 # Node / Vite
 node_modules/
