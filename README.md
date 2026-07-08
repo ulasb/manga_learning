@@ -14,6 +14,19 @@ the language. Three things it does:
    grammar/vocab notes — back into the app. A per-series **glossary** keeps names and
    vocab consistent and doubles as your study list.
 
+**▶ Live web reader (read-only): https://ulasb.github.io/manga_learning/** — a
+server-free build that opens your library straight from a local folder in the
+browser (Chrome/Edge). Nothing is uploaded; see
+[Read-only web reader](#read-only-web-reader-no-server--web) below.
+
+## Screenshots
+
+_All screenshots use synthetic demo data (`backend/seed_demo.py`) — no copyrighted manga._
+
+| Library | Series &amp; study list | Panel-focus reader |
+| --- | --- | --- |
+| ![Library grid](docs/screenshots/library.png) | ![Series detail with glossary](docs/screenshots/series.png) | ![Reader zoomed to a panel](docs/screenshots/reader.png) |
+
 ## How translation works (the hybrid loop)
 
 The web app stores your library, books, page images, panels, and glossary. The

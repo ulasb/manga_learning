@@ -1,9 +1,16 @@
 """Application configuration and shared paths."""
+import os
 from pathlib import Path
 
 # backend/app/config.py -> backend/
 BACKEND_DIR = Path(__file__).resolve().parent.parent
-DATA_DIR = BACKEND_DIR / "data"
+# Data lives in backend/data by default; override with MANGA_DATA_DIR (e.g. a
+# throwaway demo library) without touching your real one.
+DATA_DIR = (
+    Path(os.environ["MANGA_DATA_DIR"]).resolve()
+    if os.environ.get("MANGA_DATA_DIR")
+    else BACKEND_DIR / "data"
+)
 IMAGES_DIR = DATA_DIR / "images"
 COVERS_DIR = IMAGES_DIR / "covers"
 PAGES_DIR = IMAGES_DIR / "pages"
